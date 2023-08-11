@@ -10,8 +10,14 @@ export const dynamicParams = false;
 
 export async function generateStaticParams() {
   const req = await fetch(`${process.env.BASE_URL}/api/games`);
-  const games = await req.json();
-  return games.map((g: any) => ({ id: g.id }));
+
+  try {
+    const games = await req.json();
+
+    return games.map((g: any) => ({ id: g.id }));
+  } catch {
+    return [];
+  }
 }
 
 const Page = async ({

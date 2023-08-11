@@ -12,6 +12,7 @@ export async function generateStaticParams() {
 
   try {
     const games = await req.json();
+
     return games.map((g: any) => ({ id: g.id }));
   } catch {
     return [];
