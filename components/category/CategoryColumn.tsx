@@ -21,7 +21,7 @@ const CategoryColumn = ({
   category: Category;
   session?: Session;
   players?: Player[];
-  setPlayers: Dispatch<SetStateAction<Player[]>>;
+  setPlayers?: Dispatch<SetStateAction<Player[]>>;
 }) => {
   const [questions, setQuestions] = useState<Question[]>([]);
   const [loadingQuestions, setLoadingQuestions] = useState(false);

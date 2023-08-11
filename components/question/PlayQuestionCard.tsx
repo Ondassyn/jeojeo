@@ -24,7 +24,7 @@ const PlayQuestionCard = ({
   question: Question;
   categoryId: string;
   session: Session;
-  players: Player[] | undefined;
+  players: Player[];
   setPlayers: Dispatch<SetStateAction<Player[]>>;
 }) => {
   const hash = hashInRange(categoryId, COLORS?.length);

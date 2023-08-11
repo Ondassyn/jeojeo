@@ -18,11 +18,11 @@ const QuestionCard = ({
   categoryId: string;
   session?: Session;
   players?: Player[];
-  setPlayers: Dispatch<SetStateAction<Player[]>>;
+  setPlayers?: Dispatch<SetStateAction<Player[]>>;
 }) => {
   return (
     <>
-      {session ? (
+      {session && players && setPlayers ? (
         <PlayQuestionCard
           question={question}
           categoryId={categoryId}
