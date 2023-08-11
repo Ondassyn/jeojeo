@@ -1,5 +1,4 @@
 import { NextResponse } from 'next/server';
-import { toast } from 'react-hot-toast';
 import prisma from '../../../lib/prismadb';
 
 export async function DELETE(
