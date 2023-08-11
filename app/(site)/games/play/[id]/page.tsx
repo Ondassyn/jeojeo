@@ -9,8 +9,9 @@ import { notFound } from 'next/navigation';
 export const dynamicParams = false;
 
 export async function generateStaticParams() {
+  console.log('URL', `${process.env.BASE_URL}/api/games`);
   const req = await fetch(`${process.env.BASE_URL}/api/games`);
-
+  console.log('req', req);
   try {
     const games = await req.json();
 
