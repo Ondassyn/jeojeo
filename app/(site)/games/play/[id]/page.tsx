@@ -44,6 +44,9 @@ const Page = async ({
 
   return (
     <section className="pt-[9vh] pb-8 h-screen px-10 bg-base flex flex-col gap-8">
+      <div className="text-3xl text-red-500">
+        {process.env.BASE_URL || 'BASDSD'}
+      </div>
       <GameHeader name={game?.name} playId={playId} />
       <Game categories={categories} session={session} />
     </section>
