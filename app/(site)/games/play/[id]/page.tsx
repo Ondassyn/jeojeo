@@ -6,7 +6,7 @@ import Game from '@/components/game/Game';
 import GameHeader from '@/components/game/GameHeader';
 import PlayersRow from '@/components/game/PlayersRow';
 import { notFound } from 'next/navigation';
-export const dynamicParams = false;
+export const dynamicParams = true;
 
 export async function generateStaticParams() {
   const req = await fetch(`${process.env.BASE_URL}/api/games`);
