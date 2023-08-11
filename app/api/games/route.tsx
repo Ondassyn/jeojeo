@@ -39,13 +39,13 @@ export async function POST(request: Request) {
 export async function GET(request: NextRequest) {
   // it is a good practice to wrap our API code within try...catch for error handling
   try {
-    const { getUser } = getKindeServerSession();
-    const user = getUser();
+    // const { getUser } = getKindeServerSession();
+    // const user = getUser();
 
-    if (!user?.id) return NextResponse.json([]);
+    // if (!user?.id) return NextResponse.json([]);
 
     const games = await prisma.game.findMany({
-      where: { userId: user.id },
+      // where: { userId: user.id },
       orderBy: {
         createdAt: 'desc',
       },
