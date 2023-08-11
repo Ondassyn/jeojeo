@@ -1,0 +1,64 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model Game {
+  id                   String     @id @default(auto()) @map("_id") @db.ObjectId
+  name                 String
+  createdAt            DateTime   @default(now())
+  questionsPerCategory Int
+  categories           Category[]
+  sessions             Session[]
+
+  userId String
+}
+
+model Category {
+  id        String     @id @default(auto()) @map("_id") @db.ObjectId
+  name      String
+  createdAt DateTime   @default(now())
+  questions Question[]
+
+  game   Game   @relation(fields: [gameId], references: [id], onDelete: Cascade)
+  gameId String @db.ObjectId
+}
+
+model Question {
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
+  text          String?
+  createdAt     DateTime @default(now())
+  points        Int?
+  questionImage String?
+  answer        String?
+  answerImage   String?
+
+  category   Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  categoryId String   @db.ObjectId
+}
+
+model Session {
+  id        String    @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt DateTime  @default(now())
+  playId    String    @unique
+  messages  Message[]
+
+  game   Game   @relation(fields: [gameId], references: [id], onDelete: Cascade)
+  gameId String @db.ObjectId
+
+  userId String
+}
+
+model Message {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt DateTime @default(now())
+  username  String
+  message   String?
+
+  session   Session @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  sessionId String  @db.ObjectId
+}
