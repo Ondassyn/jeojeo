@@ -9,6 +9,9 @@ const page = async () => {
   return (
     <div className="h-screen bg-base pt-[9vh] px-10">
       <div className="flex flex-row flex-wrap gap-8">
+        <div className="text-3xl text-red-500">
+          {process.env.BASE_URL || 'BASDSD'}
+        </div>
         {games.map((item: any) => (
           <GameCard key={item?.id} game={item} />
         ))}
