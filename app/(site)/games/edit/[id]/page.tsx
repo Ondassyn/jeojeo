@@ -5,15 +5,15 @@ import Create from '@/components/category/Create';
 import GameHeader from '@/components/game/GameHeader';
 import { notFound } from 'next/navigation';
 
-export const dynamicParams = false;
+// export const dynamicParams = false;
 
-export async function generateStaticParams() {
-  const req = await fetch(`${process.env.BASE_URL}/api/games`);
+// export async function generateStaticParams() {
+//   const req = await fetch(`${process.env.BASE_URL}/api/games`);
 
-  const games = await req.json();
+//   const games = await req.json();
 
-  return games.map((g: any) => ({ id: g.id }));
-}
+//   return games.map((g: any) => ({ id: g.id }));
+// }
 
 const Page = async ({ params }: { params: any }) => {
   const game = await getGameById({ id: params.id });
