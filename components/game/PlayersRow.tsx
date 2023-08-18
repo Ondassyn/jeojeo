@@ -53,7 +53,7 @@ const PlayersRow = ({
   return (
     <div className="flex flex-row gap-8 items-center">
       {!locked && (
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-2 w-72">
           <ElevatedButton
             type="primary"
             onClick={() => {
@@ -72,7 +72,7 @@ const PlayersRow = ({
             }}
             loading={loadingRefresh}
           >
-            <div className="flex flex-row items-center justify-center gap-2 w-48">
+            <div className="flex flex-row items-center justify-center gap-2">
               <ArrowPathIcon className="h-4" />
               <p>Refresh players</p>
             </div>
