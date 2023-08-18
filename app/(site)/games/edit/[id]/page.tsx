@@ -26,7 +26,7 @@ const Page = async ({ params }: { params: any }) => {
   }
 
   return (
-    <section className="pt-[9vh] pb-8 h-screen px-10 bg-primary flex flex-col gap-8">
+    <section className="pt-[9vh] pb-8 h-screen px-10 flex flex-col gap-8">
       <GameHeader name={game.name} />
       <div className="flex flex-row gap-8 h-full">
         {categories.map((category) => (

@@ -63,14 +63,12 @@ const CategoryName = ({
         </div>
       ) : (
         <div className="flex flex-row justify-center items-center gap-4">
-          <p className="text-2xl">{name}</p>
+          <p className="text-xl">{name}</p>
           {editable && (
-            <div className="flex flex-row items-center">
-              <PencilIcon
-                className="h-4 cursor-pointer"
-                onClick={() => setEditing(true)}
-              />
-            </div>
+            <PencilIcon
+              className="h-4 cursor-pointer hover:h-5 transition-all ease-in-out duration-200"
+              onClick={() => setEditing(true)}
+            />
           )}
         </div>
       )}

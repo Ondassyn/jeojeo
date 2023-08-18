@@ -7,8 +7,36 @@ import {
 import { Message, Session } from '@prisma/client';
 import React, { Dispatch, SetStateAction, useState } from 'react';
 import { toast } from 'react-hot-toast';
-import Button from '../button/Button';
 import { Player } from '@/types';
+import ElevatedButton from '../button/ElevatedButton';
+import Lottie from 'react-lottie-player';
+
+import spaceshipPurple from '@/public/lotties/spaceship_purple.json';
+import spaceshipRed from '@/public/lotties/spaceship_red.json';
+import spaceshipBlue from '@/public/lotties/spaceship_blue.json';
+import spaceshipOrange from '@/public/lotties/spaceship_orange.json';
+import spaceshipGreen from '@/public/lotties/spaceship_green.json';
+import Image from 'next/image';
+
+import splashOrange from '@/public/splash-orange.png';
+import splashPurple from '@/public/splash-purple.png';
+import splashBlue from '@/public/splash-blue.png';
+import splashGreen from '@/public/splash-green.png';
+
+const SPACESHIPS = [
+  spaceshipPurple,
+  spaceshipRed,
+  spaceshipOrange,
+  spaceshipGreen,
+  spaceshipBlue,
+];
+
+const SPLASHES = [
+  splashPurple,
+  splashOrange,
+  splashGreen,
+  splashBlue,
+];
 
 const PlayersRow = ({
   session,
@@ -25,8 +53,8 @@ const PlayersRow = ({
   return (
     <div className="flex flex-row gap-8 items-center">
       {!locked && (
-        <div className="flex flex-col gap-1">
-          <Button
+        <div className="flex flex-col gap-2">
+          <ElevatedButton
             type="primary"
             onClick={() => {
               setLoadingRefresh(true);
@@ -44,12 +72,12 @@ const PlayersRow = ({
             }}
             loading={loadingRefresh}
           >
-            <div className="flex flex-row items-center justify-center gap-2">
+            <div className="flex flex-row items-center justify-center gap-2 w-48">
               <ArrowPathIcon className="h-4" />
               <p>Refresh players</p>
             </div>
-          </Button>
-          <Button
+          </ElevatedButton>
+          <ElevatedButton
             type="error"
             onClick={() => {
               setPlayers(
@@ -65,29 +93,55 @@ const PlayersRow = ({
               <LockClosedIcon className="h-4 -mt-1" />
               <p>Lock players</p>
             </div>
-          </Button>
+          </ElevatedButton>
         </div>
       )}
 
-      {locked
-        ? players.map((player) => (
-            <div
-              key={Math.random()}
-              className="flex flex-col justify-center items-center text-white"
-            >
-              <p>{player.username}</p>
-              <p>{player.points}</p>
-            </div>
-          ))
-        : messages.map((msg) => (
-            <div
-              key={msg.id}
-              className="text-white text-xl rounded-lg flex flex-row gap-2 items-center justify-center 
-              bg-secondary p-2"
-            >
-              <p>{msg?.username}</p>
-            </div>
-          ))}
+      <div className="w-full flex flex-row justify-around">
+        {locked
+          ? players.map((player, index) => (
+              <div
+                key={Math.random()}
+                className="flex flex-col justify-center items-center font-bold tracking-wide text-center"
+              >
+                <div className="flex flex-row justify-center items-center border p-1 w-24">
+                  <p>{player.points}</p>
+                </div>
+                <div className="h-28 w-28 flex flex-col justify-center items-center">
+                  <div className="z-10 ">{player.username}</div>
+
+                  <Image
+                    alt="planet"
+                    src={SPLASHES[index % SPLASHES.length]}
+                    style={{
+                      height: '120px',
+                      width: '120px',
+                      position: 'absolute',
+                      objectFit: 'cover',
+                    }}
+                  />
+                </div>
+              </div>
+            ))
+          : messages.map((msg, index) => (
+              <div
+                key={msg.id}
+                className="text-white text-xl rounded-lg flex flex-row items-center justify-center 
+               p-2"
+              >
+                <div className="w-24">
+                  <Lottie
+                    animationData={
+                      SPACESHIPS[index % SPACESHIPS.length]
+                    }
+                    play
+                    loop
+                  />
+                </div>
+                <p className="font-bold">{msg?.username}</p>
+              </div>
+            ))}
+      </div>
     </div>
   );
 };

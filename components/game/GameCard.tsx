@@ -12,12 +12,15 @@ import {
   FilmIcon,
   PlayIcon,
   StarIcon,
+  TrashIcon,
   WrenchIcon,
 } from '@heroicons/react/24/solid';
 import { Game } from '@prisma/client';
+import axios from 'axios';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React from 'react';
+import { toast } from 'react-hot-toast';
 
 const GameCard = ({ game }: { game: Game }) => {
   const router = useRouter();
@@ -29,10 +32,13 @@ const GameCard = ({ game }: { game: Game }) => {
       style={{
         backgroundColor: COLORS[hash]?.dark,
       }}
-      className="relative w-64 h-48 rounded-xl cursor-pointer pt-8 flex flex-col justify-between items-center overflow-hidden text-base"
+      className="relative w-64 h-48 rounded-xl cursor-pointer pt-8 flex 
+        flex-col justify-between items-center text-center overflow-hidden 
+        text-dark font-semibold shadow-xl 
+        hover:scale-110 transition ease-in-out duration-200"
     >
       {ICONS[iconHash]}
-      <h1 className="z-10 text-xl font-bold tracking-wide">
+      <h1 className="z-10 text-3xl font-bold tracking-wide">
         {game?.name}
       </h1>
       <div
@@ -44,7 +50,7 @@ const GameCard = ({ game }: { game: Game }) => {
             pathname: `/games/play/${game?.id}`,
             query: { username },
           }}
-          className="flex flex-row gap-1 items-center hover:font-semibold"
+          className="flex flex-row gap-1 items-center hover:font-extrabold"
         >
           <div
             className="p-2 rounded-md"
@@ -58,7 +64,7 @@ const GameCard = ({ game }: { game: Game }) => {
           onClick={() => {
             router.push(`/games/edit/${game?.id}`);
           }}
-          className="flex flex-row gap-2 items-center hover:font-semibold"
+          className="flex flex-row gap-2 items-center hover:font-extrabold"
         >
           <div
             className="p-2 rounded-md"
@@ -67,6 +73,24 @@ const GameCard = ({ game }: { game: Game }) => {
             <WrenchIcon className="h-4" />
           </div>
           <p>Edit</p>
+        </div>
+        <div
+          className="p-2 rounded-md"
+          style={{ backgroundColor: COLORS[hash]?.light }}
+          onClick={() => {
+            axios
+              .delete(`/api/games/${game.id}`)
+              .then((res) => {
+                toast.success(`${res.data.name} has been deleted!`);
+                router.refresh();
+              })
+
+              .catch((err) => {
+                toast.error(err?.message ?? 'Something went wrong!');
+              });
+          }}
+        >
+          <TrashIcon className="h-5 text-error" />
         </div>
       </div>
     </div>

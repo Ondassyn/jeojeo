@@ -22,6 +22,7 @@ const Create = () => {
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const [state, setState] = useState(initialState);
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e: any) => {
     setState({ ...state, [e.target.name]: e.target.value });
@@ -29,7 +30,7 @@ const Create = () => {
 
   const onSubmit = (event: FormEvent) => {
     event.preventDefault();
-
+    setLoading(true);
     axios
       .post('/api/games', state)
       .then(() => {
@@ -40,7 +41,8 @@ const Create = () => {
 
       .catch((err: any) => {
         toast.error(err?.response?.data ?? 'Something went wrong!');
-      });
+      })
+      .finally(() => setLoading(false));
   };
 
   return (
@@ -50,7 +52,7 @@ const Create = () => {
         flex flex-col justify-center items-center cursor-pointer text-white"
         onClick={() => setOpen(true)}
       >
-        <PlusIcon className="h-12" />
+        <PlusIcon className="h-12 hover:h-14 transition-all ease-in-out duration-200" />
         <p>Create game</p>
       </div>
       <Modal
@@ -58,6 +60,7 @@ const Create = () => {
         setOpen={setOpen}
         confirmText="Create"
         onSubmit={onSubmit}
+        loading={loading}
       >
         <div className="w-full p-2 flex flex-col gap-4">
           <h1 className="font-semibold leading-6 text-lg text-dark">

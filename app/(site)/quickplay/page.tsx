@@ -3,7 +3,7 @@ import React from 'react';
 
 const page = () => {
   return (
-    <div>
+    <div className="h-screen bg-gradient-to-br from-[#1B181F] to-[#320459]">
       <QuickPlay />
     </div>
   );

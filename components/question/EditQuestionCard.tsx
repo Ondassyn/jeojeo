@@ -29,9 +29,11 @@ const EditQuestionCard = ({
   );
   const [hasQuestionImage, setHasQuestionImage] = useState(false);
   const [hasAnswerImage, setHasAnswerImage] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const onSubmit = (event: FormEvent) => {
     event.preventDefault();
+    setLoading(true);
     axios
       .patch(`/api/questions/${question?.id}`, {
         text,
@@ -52,15 +54,15 @@ const EditQuestionCard = ({
         throw new Error(err);
       })
       .finally(() => {
-        // router.push('/')
+        setLoading(false);
       });
   };
 
   return (
     <>
       <div
-        className="w-full h-full bg-secondary flex flex-col gap-4 justify-center items-center 
-      rounded-xl text-xl cursor-pointer"
+        className="w-full h-full bg-purple-800 flex flex-col gap-4 justify-center items-center 
+      rounded-xl text-xl cursor-pointer shadow-lg hover:scale-110 transition ease-in-out duration-200"
         onClick={() => setOpen(true)}
       >
         <div>{`Answer: ${answer ?? '-'}`}</div>
@@ -71,6 +73,7 @@ const EditQuestionCard = ({
         setOpen={setOpen}
         confirmText="Save"
         onSubmit={onSubmit}
+        loading={loading}
       >
         <div className="flex flex-col gap-4 w-full p-2">
           <div className="flex flex-col gap-2 text-dark">

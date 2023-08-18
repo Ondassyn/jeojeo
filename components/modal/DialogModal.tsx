@@ -6,11 +6,13 @@ import React, {
   ReactNode,
   SetStateAction,
 } from 'react';
+import Button from '../button/Button';
+import ElevatedButton from '../button/ElevatedButton';
 
 interface ModalProps {
   open: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
-  onSubmit?: (event: FormEvent) => void;
+  onSubmit: (event: FormEvent) => void;
   children: ReactNode;
   confirmText: string;
 }
@@ -38,13 +40,13 @@ const DialogModal = ({
               <div className="sm:flex sm:items-start">{children}</div>
             </div>
             <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
-              <button
-                type="submit"
+              <ElevatedButton
+                type=""
                 className="inline-flex w-full justify-center rounded-md bg-primary px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-opacity-90 sm:ml-3 sm:w-auto"
                 onClick={onSubmit}
               >
                 {confirmText}
-              </button>
+              </ElevatedButton>
             </div>
           </div>
         </div>

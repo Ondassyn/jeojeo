@@ -17,13 +17,13 @@ const Button = ({
     <button
       className={`${
         type === 'primary'
-          ? 'bg-primary'
+          ? 'bg-primary text-white'
           : type === 'secondary'
-          ? 'bg-secondary'
+          ? 'bg-secondary text-white'
           : type === 'error'
-          ? 'bg-error'
-          : ''
-      } rounded-lg py-1 px-3 h-10 min-w-[60px] text-white cursor-pointer
+          ? 'bg-error text-white'
+          : 'border-2 text-dark'
+      } rounded-lg py-1 px-3 h-9 min-w-[60px] cursor-pointer
       hover:bg-opacity-90`}
       onClick={onClick}
       disabled={disabled}
@@ -31,7 +31,7 @@ const Button = ({
       {loading ? (
         <svg
           role="status"
-          className="inline m-auto w-6 h-6 text-primary animate-spin"
+          className="inline m-auto w-5 h-5 text-primary animate-spin"
           viewBox="0 0 100 101"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"

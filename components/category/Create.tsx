@@ -42,7 +42,7 @@ const Create = ({
         flex flex-col justify-center items-center cursor-pointer text-white"
         onClick={onSubmit}
       >
-        <PlusIcon className="h-12" />
+        <PlusIcon className="h-12 hover:h-14 transition-all ease-in-out duration-200" />
         <p className="text-center">Create category</p>
       </div>
     </div>

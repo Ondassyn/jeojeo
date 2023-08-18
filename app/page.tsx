@@ -1,5 +1,9 @@
+import Welcome from '@/components/welcome/Welcome';
+
 export default function Home() {
   return (
-    <main className="flex min-h-screen bg-base flex-col items-center justify-between p-24"></main>
+    <main className="flex min-h-screen">
+      <Welcome />
+    </main>
   );
 }
