@@ -62,11 +62,20 @@ const EditQuestionCard = ({
     <>
       <div
         className="w-full h-full bg-purple-800 flex flex-col gap-4 justify-center items-center 
-      rounded-xl text-xl cursor-pointer shadow-lg hover:scale-110 transition ease-in-out duration-200 text-center"
+      rounded-xl text-xl cursor-pointer shadow-lg hover:scale-110 transition ease-in-out duration-200 text-center
+      "
         onClick={() => setOpen(true)}
       >
-        <div className="truncate">{`Answer: ${answer ?? '-'}`}</div>
-        <div>{`Points: ${points ?? '-'}`}</div>
+        <div className="w-full px-4">
+          <span className="block truncate">{`Answer: ${
+            answer ?? '-'
+          }`}</span>
+        </div>
+        <div className="w-full px-4">
+          <span className="block truncate">{`Points: ${
+            points ?? '-'
+          }`}</span>
+        </div>
       </div>
       <Modal
         open={open}

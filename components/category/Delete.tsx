@@ -25,7 +25,7 @@ const Delete = ({ id }: { id: string }) => {
   };
   return (
     <TrashIcon
-      className="h-5 mr-2 cursor-pointer text-error ml-auto
+      className="h-5 w-10 mr-2 cursor-pointer text-error ml-auto
       hover:h-6 transition-all ease-in-out duration-200"
       onClick={onDelete}
     />

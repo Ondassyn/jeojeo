@@ -150,7 +150,7 @@ const PlayQuestionModal = ({
               </div>
             ) : (
               <div className="w-full h-full border-8 rounded-lg flex flex-col gap-8 justify-center items-center p-8">
-                <div className="text-5xl font-semibold">
+                <div className="text-5xl font-semibold text-center">
                   {question?.text}
                 </div>
                 {question?.questionImage && (
