@@ -65,7 +65,7 @@ const EditQuestionCard = ({
       rounded-xl text-xl cursor-pointer shadow-lg hover:scale-110 transition ease-in-out duration-200 text-center"
         onClick={() => setOpen(true)}
       >
-        <div>{`Answer: ${answer ?? '-'}`}</div>
+        <div className="truncate">{`Answer: ${answer ?? '-'}`}</div>
         <div>{`Points: ${points ?? '-'}`}</div>
       </div>
       <Modal
