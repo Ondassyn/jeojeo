@@ -25,6 +25,8 @@ const PlayerBoard = ({
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           className="text-2xl"
+          placeholder="Enter your answer (40 characters max)"
+          maxLength={40}
         />
       </div>
       <div className="w-full md:w-96">
@@ -59,7 +61,7 @@ const PlayerBoard = ({
       {submitted && (
         <div className="flex flex-col justify-center items-center gap-4 text-white">
           <p className="text-lg">Last submitted answer:</p>
-          <p className="text-xl rounded-lg border-2 border-primary px-8 py-2">
+          <p className="text-xl rounded-lg border-2 border-primary px-8 py-2 text-center">
             {submitted}
           </p>
         </div>

@@ -1,5 +1,6 @@
 'use client';
 
+import { kMaxLength } from 'buffer';
 import React from 'react';
 
 interface InputProps {
@@ -13,6 +14,7 @@ interface InputProps {
   autoComplete?: string;
   rows?: number;
   className?: string;
+  maxLength?: number;
 }
 
 const TextArea = ({
@@ -26,6 +28,7 @@ const TextArea = ({
   autoComplete,
   rows,
   className,
+  maxLength,
 }: InputProps) => {
   return (
     <textarea
@@ -40,6 +43,7 @@ const TextArea = ({
         placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary
         ${className}`}
       rows={rows ?? 3}
+      maxLength={maxLength}
     ></textarea>
   );
 };

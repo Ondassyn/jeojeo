@@ -72,6 +72,7 @@ const QuickPlay = () => {
                 type="text"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
+                maxLength={16}
               />
             </div>
           </div>

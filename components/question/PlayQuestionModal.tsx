@@ -72,7 +72,7 @@ const PlayQuestionModal = ({
           >
             {showAnswer ? (
               <div className="w-full h-full border-8 rounded-lg flex flex-col gap-8 justify-center items-center p-8">
-                <div className="text-5xl font-semibold">
+                <div className="text-5xl font-semibold text-center">
                   {question?.answer}
                 </div>
                 {question?.answerImage && (
@@ -93,8 +93,10 @@ const PlayQuestionModal = ({
                       key={Math.random()}
                       className="flex flex-col justify-center items-center"
                     >
-                      <div>{p.username}</div>
-                      <div>
+                      <div className="text-xl text-yellow-200">
+                        {p.username}
+                      </div>
+                      <div className="text-center">
                         {messages.find(
                           (msg) => msg.username === p.username
                         )?.message || 'No answer'}

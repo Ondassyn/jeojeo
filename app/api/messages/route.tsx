@@ -58,6 +58,9 @@ export async function GET(request: Request) {
         username: username === null ? undefined : username,
         message: message === null ? undefined : message,
       },
+      orderBy: {
+        createdAt: 'desc',
+      },
     });
   } else if (playId) {
     const session = await prisma.session.findUnique({
@@ -76,6 +79,9 @@ export async function GET(request: Request) {
         sessionId: session.id,
         username: username === null ? undefined : username,
         message: message === null ? undefined : message,
+      },
+      orderBy: {
+        createdAt: 'desc',
       },
     });
   }
