@@ -8,7 +8,14 @@ export async function PATCH(
   { params }: { params: { questionId: string } }
 ) {
   const body = await request.json();
-  const { text, points, answer, answerImage, questionImage } = body;
+  const {
+    text,
+    points,
+    answer,
+    answerImage,
+    questionImage,
+    questionAudio,
+  } = body;
   const { questionId } = params;
 
   if (!questionId) {
@@ -31,6 +38,7 @@ export async function PATCH(
       answer,
       answerImage,
       questionImage,
+      questionAudio,
     },
   });
 

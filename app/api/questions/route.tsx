@@ -12,6 +12,7 @@ export async function POST(request: Request) {
     questionImage,
     answer,
     answerImage,
+    questionAudio,
   } = body;
 
   if (!categoryId) {
@@ -32,6 +33,7 @@ export async function POST(request: Request) {
       questionImage,
       answer,
       answerImage,
+      questionAudio,
     },
   });
 

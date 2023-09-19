@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import Lottie from 'react-lottie-player';
 import astronaut from '@/public/lotties/astronaut.json';
 import Image from 'next/image';
@@ -15,6 +15,11 @@ import {
 
 const Welcome = () => {
   const router = useRouter();
+
+  const [loadingJoin, setLoadingJoin] = useState(false);
+  const [loadingSignup, setLoadingSignup] = useState(false);
+  const [loadingLogin, setLoadingLogin] = useState(false);
+
   return (
     <div className="h-full w-full flex lg:flex-row flex-col items-center">
       <div className="lg:w-1/2 flex flex-col gap-16 justify-center py-12 lg:py-0">
@@ -32,12 +37,22 @@ const Welcome = () => {
             text={'Join'}
             onClick={() => {
               router.push('/quickplay');
+              setLoadingJoin(true);
             }}
+            loading={loadingJoin}
           />
-          <ElevatedButton size="big">
+          <ElevatedButton
+            size="big"
+            onClick={() => setLoadingSignup(true)}
+            loading={loadingSignup}
+          >
             <RegisterLink>Sign up</RegisterLink>
           </ElevatedButton>
-          <ElevatedButton size="big">
+          <ElevatedButton
+            size="big"
+            onClick={() => setLoadingLogin(true)}
+            loading={loadingLogin}
+          >
             <LoginLink>Sign in</LoginLink>
           </ElevatedButton>
         </div>

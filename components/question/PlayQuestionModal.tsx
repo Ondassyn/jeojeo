@@ -19,6 +19,7 @@ import { toast } from 'react-hot-toast';
 import ElevatedButton from '../button/ElevatedButton';
 import Lottie from 'react-lottie-player';
 import clock from '@/public/lotties/clock.json';
+import AudioPlayer from '../audioPlayer/AudioPlayer';
 
 interface ModalProps {
   open: boolean;
@@ -162,6 +163,14 @@ const PlayQuestionModal = ({
                       fill
                       style={{ objectFit: 'contain' }}
                       src={question?.questionImage}
+                    />
+                  </div>
+                )}
+                {question?.questionAudio && (
+                  <div className="border-2 rounded-xl p-2">
+                    <AudioPlayer
+                      url={question?.questionAudio}
+                      isAnimated
                     />
                   </div>
                 )}

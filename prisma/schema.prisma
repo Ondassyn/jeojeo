@@ -36,6 +36,7 @@ model Question {
   questionImage String?
   answer        String?
   answerImage   String?
+  questionAudio String?
 
   category   Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
   categoryId String   @db.ObjectId

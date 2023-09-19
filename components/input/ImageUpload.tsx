@@ -31,6 +31,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
       uploadPreset="h6ooi4xh"
       options={{
         maxFiles: 1,
+        maxFileSize: 500000,
       }}
     >
       {({ open }) => {

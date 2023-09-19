@@ -4,6 +4,7 @@ import { Question } from '@prisma/client';
 import axios from 'axios';
 import React, { FormEvent, useState } from 'react';
 import { toast } from 'react-hot-toast';
+import AudioUpload from '../input/AudioUpload';
 import ImageUpload from '../input/ImageUpload';
 import Input from '../input/Input';
 import TextArea from '../input/TextArea';
@@ -27,7 +28,11 @@ const EditQuestionCard = ({
   const [questionImage, setQuestionImage] = useState(
     question?.questionImage ?? undefined
   );
+  const [questionAudio, setQuestionAudio] = useState(
+    question?.questionAudio ?? undefined
+  );
   const [hasQuestionImage, setHasQuestionImage] = useState(false);
+  const [hasQuestionAudio, setHasQuestionAudio] = useState(false);
   const [hasAnswerImage, setHasAnswerImage] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -41,6 +46,7 @@ const EditQuestionCard = ({
         answer,
         answerImage,
         questionImage,
+        questionAudio,
       })
       .then(() => {
         // router.refresh()
@@ -112,6 +118,28 @@ const EditQuestionCard = ({
               <ImageUpload
                 value={questionImage}
                 onChange={(val) => setQuestionImage(val)}
+              />
+            )}
+          </div>
+          <div className="flex flex-col gap-2 text-dark">
+            <div className="flex flex-row gap-4 items-center">
+              <p>Question audio</p>
+              <Toggle
+                value={hasQuestionAudio}
+                onClick={() => {
+                  if (hasQuestionAudio) {
+                    setHasQuestionAudio(false);
+                    setQuestionAudio(undefined);
+                  } else {
+                    setHasQuestionAudio(true);
+                  }
+                }}
+              />
+            </div>
+            {hasQuestionAudio && (
+              <AudioUpload
+                value={questionAudio}
+                onChange={(val) => setQuestionAudio(val)}
               />
             )}
           </div>
