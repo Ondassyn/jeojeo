@@ -34,7 +34,7 @@ const AudioUpload: React.FC<AudioUploadProps> = ({
       uploadPreset="h6ooi4xh"
       options={{
         maxFiles: 1,
-        maxFileSize: 1000000,
+        maxFileSize: 5000000,
       }}
     >
       {({ open }) => {
