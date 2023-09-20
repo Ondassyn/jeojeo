@@ -11,13 +11,7 @@ import TextArea from '../input/TextArea';
 import Modal from '../modal/Modal';
 import Toggle from '../toggle/Toggle';
 
-const EditQuestionCard = ({
-  question,
-  categoryId,
-}: {
-  question: Question;
-  categoryId: string;
-}) => {
+const EditQuestionCard = ({ question }: { question: Question }) => {
   const [open, setOpen] = useState(false);
   const [answer, setAnswer] = useState(question?.answer);
   const [points, setPoints] = useState(question?.points);
@@ -31,9 +25,15 @@ const EditQuestionCard = ({
   const [questionAudio, setQuestionAudio] = useState(
     question?.questionAudio ?? undefined
   );
-  const [hasQuestionImage, setHasQuestionImage] = useState(false);
-  const [hasQuestionAudio, setHasQuestionAudio] = useState(false);
-  const [hasAnswerImage, setHasAnswerImage] = useState(false);
+  const [hasQuestionImage, setHasQuestionImage] = useState(
+    !!question?.questionImage
+  );
+  const [hasQuestionAudio, setHasQuestionAudio] = useState(
+    !!question?.questionAudio
+  );
+  const [hasAnswerImage, setHasAnswerImage] = useState(
+    !!question?.answerImage
+  );
   const [loading, setLoading] = useState(false);
 
   const onSubmit = (event: FormEvent) => {

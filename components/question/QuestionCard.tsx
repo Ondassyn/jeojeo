@@ -31,10 +31,7 @@ const QuestionCard = ({
           setPlayers={setPlayers}
         />
       ) : (
-        <EditQuestionCard
-          question={question}
-          categoryId={categoryId}
-        />
+        <EditQuestionCard question={question} />
       )}
     </>
   );
