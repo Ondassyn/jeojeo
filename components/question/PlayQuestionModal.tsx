@@ -19,6 +19,8 @@ import { toast } from 'react-hot-toast';
 import ElevatedButton from '../button/ElevatedButton';
 import Lottie from 'react-lottie-player';
 import clock from '@/public/lotties/clock.json';
+import typing from '@/public/lotties/typing.json';
+import done from '@/public/lotties/done.json';
 import AudioPlayer from '../audioPlayer/AudioPlayer';
 
 interface ModalProps {
@@ -58,6 +60,23 @@ const PlayQuestionModal = ({
 
     return () => clearInterval(interval);
   }, [open]);
+
+  useEffect(() => {
+    let interval: ReturnType<typeof setInterval>;
+    if (open) {
+      interval = setInterval(() => {
+        fetch(`/api/messages/?sessionId=${session.id}`)
+          .then((res) => res.json())
+          .then((data) => setMessages(data))
+          .catch((err) =>
+            toast.error(
+              err?.data?.response || "Couldn't fetch players' answers"
+            )
+          );
+      }, 5000);
+    }
+    return () => clearInterval(interval);
+  }, [session.id, open]);
 
   return (
     <div
@@ -174,6 +193,40 @@ const PlayQuestionModal = ({
                     />
                   </div>
                 )}
+
+                <div className="flex flex-row justify-around w-full self-end">
+                  {players?.map((p, index) => (
+                    <div
+                      key={index}
+                      className="flex flex-col justify-center items-center"
+                    >
+                      <div className="text-xl text-center text-yellow-200">
+                        {p.username}
+                      </div>
+                      <div className="">
+                        {messages.some(
+                          (msg) => msg.username === p.username
+                        ) ? (
+                          <div className="h-12 w-12">
+                            <Lottie
+                              animationData={done}
+                              play
+                              loop={false}
+                            />
+                          </div>
+                        ) : (
+                          <div className="h-12 w-24">
+                            <Lottie
+                              animationData={typing}
+                              play
+                              loop
+                            />
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                </div>
                 <XCircleIcon
                   className="absolute right-8 top-8 h-10 cursor-pointer
                   hover:h-12 transition-all ease-in-out duration-200"
