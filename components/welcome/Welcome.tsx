@@ -41,20 +41,24 @@ const Welcome = () => {
             }}
             loading={loadingJoin}
           />
-          <ElevatedButton
-            size="big"
-            onClick={() => setLoadingSignup(true)}
-            loading={loadingSignup}
-          >
-            <RegisterLink>Sign up</RegisterLink>
-          </ElevatedButton>
-          <ElevatedButton
-            size="big"
-            onClick={() => setLoadingLogin(true)}
-            loading={loadingLogin}
-          >
-            <LoginLink>Sign in</LoginLink>
-          </ElevatedButton>
+          <RegisterLink>
+            <ElevatedButton
+              size="big"
+              onClick={() => setLoadingSignup(true)}
+              loading={loadingSignup}
+            >
+              Sign up
+            </ElevatedButton>
+          </RegisterLink>
+          <LoginLink>
+            <ElevatedButton
+              size="big"
+              onClick={() => setLoadingLogin(true)}
+              loading={loadingLogin}
+            >
+              Sign in
+            </ElevatedButton>
+          </LoginLink>
         </div>
       </div>
       <div
